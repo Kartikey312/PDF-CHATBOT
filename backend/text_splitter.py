@@ -1,25 +1,21 @@
-from pdf_loader import PDFLoader
-from text_splitter import TextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-loader = PDFLoader("data/insurance.pdf")
 
-documents = loader.load_pdf()
+class TextSplitter:
 
-splitter = TextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200
-)
+    def __init__(
+        self,
+        chunk_size: int = 1000,
+        chunk_overlap: int = 200
+    ):
+        self.splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap
+        )
 
-chunks = splitter.split_documents(documents)
-
-print(f"Total Pages : {len(documents)}")
-
-print(f"Total Chunks : {len(chunks)}")
-
-print("=" * 60)
-
-print(chunks[0].page_content)
-
-print("=" * 60)
-
-print(chunks[0].metadata)
+    def split_documents(self, documents):
+        """
+        Split LangChain Document objects into smaller chunks.
+        """
+        chunks = self.splitter.split_documents(documents)
+        return chunks
