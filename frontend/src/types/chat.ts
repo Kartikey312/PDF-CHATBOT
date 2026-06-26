@@ -1,6 +1,14 @@
 export interface ChatResponse {
     answer: string;
-    pages: number[];
+    question?: string;
+    pages?: number[];
+}
+
+export interface UploadResponse {
+    message: string;
+    filename: string;
+    pages: number;
+    chunks: number;
 }
 
 export interface Message {
