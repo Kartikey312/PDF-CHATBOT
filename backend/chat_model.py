@@ -5,7 +5,7 @@ from config import GOOGLE_API_KEY
 
 class ChatModel:
 
-    def __init__(self, model: str = "gemini-1.5-flash", temperature: float = 0):
+    def __init__(self, model: str = "gemini-2.5-flash", temperature: float = 0):
         self.llm = ChatGoogleGenerativeAI(
             model=model,
             google_api_key=GOOGLE_API_KEY,
